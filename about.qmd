@@ -3,27 +3,26 @@ title: "A Beginner’s Guide to Understanding Neural Networks"
 ---
 
 ## Introduction
-In our day and age, Artificial Intelligence (AI) is proving to be a more and more powerful tool. 
-Due to its power, some people can see the things it does and think that it is utterly inscrutable. 
+Artificial Intelligence (AI) is proving to be a more and more powerful tool, and some people think that it is utterly inscrutable. 
 However, I want to push back against that idea by teaching you about neural networks! 
-Neural networks are the foundation of deep learning, which in turn means that an understanding of neural networks can teach us more about how AI works!
-In this blog, I aim to teach you the fundamentals of the basic structure of neural networks, explain how neural networks are trained, and give an example of neural networks in action.
+Neural networks are the foundation of deep learning, so an understanding of neural networks can improve our understanding of AI!
+In this blog, I aim to teach the fundamentals of the structure of neural networks, how they're trained, and give an example of neural networks in action.
 
 ## Basic Structure
 
-The big picture of a neural network is to gradually create a function that maps existing input x's onto correct output y's such that we can accurately predict y's given new x's.
+The big picture of a neural network is to iteratively create a function that maps existing input x's onto correct output y's such that we can accurately predict y's given new x's.
 
 ### Neurons
 
 ![A basic neural network](images/Colored_neural_network.webp)
 
-A neural network consists of a series of neurons (also called nodes) arranged in multiple interconnected layers that lead from an input layer, through "hidden layers," and end up in an output layer (as shown in the above image).
+A neural network consists of a series of neurons (also called nodes) arranged in multiple interconnected layers that progress from an input layer, through "hidden layers," and end up in an output layer (as shown in the above image).
 A given neuron works by:
 
 1. taking all of the previous inputs (`x1` through `xn`), 
 2. multiplying them by a weight (`w1` through `wn`), 
 3. summing them (we'll call this sum `z`),
-4. adding a "bias" to that sum (we'll call the bias `b`),
+4. adding a "bias" to `z` (we'll call the bias `b`),
 5. then passing it through a nonlinearity function (we'll call this sigma, but more on that later) .
 
 With all of that together, the math for a given neuron's activation `a` will look like this: (Note that `z` looks remarkably similar to a linear regression equation.)
@@ -33,7 +32,7 @@ $$
 
 The reason we pass `z` into a nonlinearity function to get the neuron's activation is because introducing nonlinearity allows the neuron a greater measure of flexibility.
 If not for our nonlinearity function, a given neuron would only be able to produce a straight line, which would miss out on a lot of higher level details. 
-However, since nonlinear functions already have a bit of bendiness to them, transformations can make them fit the shape of the data incredibly well!
+However, since nonlinear functions already have a bit of bend to them, transformations can the model fit the shape of the data incredibly well!
 
 ![Example of nonlinearity in action](images/nonlinearity.webp)
 
@@ -44,11 +43,17 @@ Commonly used functions are this are ReLUs (which excludes negative values) and 
 A neural network functions by having every neuron in a given layer interact with every neuron in the next layer.
 The first layer is called the "input layer," and will have a node for every input you pass into the neural network (inputs can range from various medical variables such as BMI and heart rate to pixels from an image).
 
-From there, the neurons in the input layer will connect with every node in the next layer, called a "hidden layer." These consist of many nodes that exist to discover high-dimensional features about the data through each node's unique combination of weights and biases. Each neuron in the hidden layer will use every activation from the previous layer's neurons as inputs that get scaled by the current neuron's weights and bias. Later on, the node's weights and bias will be tuned through training to more effectively recognize hidden connections within the data. There can also be any number of hidden layers, and every neuron in a given hidden layer will connect to the next hidden layer.
+From there, every input neuron will connect with every node in the next "hidden layer."
+These consist of nodes that aim to discover high-dimensional connections about the data through each node's unique combination of weights and biases. 
+Each neuron in the hidden layer apply weights to the previous nodes' activations, then sum them and add a bias.
+Later on, the node's weights and bias will be tuned through training to more effectively recognize hidden connections within the data. 
+From there, these nodes' activations will be passed into additional hidden layers until the final layer is reached.
 
 ![A neural network with multiple hidden layers](images/multiple_hidden_layers.png)
 
-Finally, after all of the neurons in the hidden layers activate, the neural network will return some value by doing math in the output layer. Sometimes this value will manifest as a probability between which of multiple outcomes will most likely be observed, or as a single number that predicts some metric (such as life expectancy). This will give us the outputs that we'll test for accuracy in the training phase. 
+Finally, after all of the neurons in the hidden layers activate, the neural network will return a value in the output layer. 
+Sometimes this value will manifest as a probability between which of multiple outcomes will most likely be observed, or as a single number that predicts some metric (such as life expectancy). 
+This will give us the outputs that we'll test for accuracy in the training phase. 
 
 ## Training Process
 ### Analyzing Loss
