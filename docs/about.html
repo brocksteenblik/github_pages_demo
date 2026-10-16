@@ -188,11 +188,11 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Artificial Intelligence (AI) is proving to be a more and more powerful tool, and some people think that it is utterly inscrutable. However, I want to push back against that idea by teaching you about neural networks! Neural networks are the foundation of deep learning, so an understanding of neural networks can improve our understanding of AI! In this blog, I aim to teach the fundamentals of the structure of neural networks, how they’re trained, and give an example of neural networks in action.</p>
+<p>Artificial Intelligence (AI) is proving to be a an increasingly powerful tool, and some think that it is utterly inscrutable. However, I want to push back against that idea by teaching you about neural networks! Neural networks are the foundation of deep learning, so an understanding of neural networks can improve our understanding of AI! In this blog, I aim to teach the fundamentals of the structure of neural networks, how they’re trained, and give an example of neural networks running.</p>
 </section>
 <section id="basic-structure" class="level2">
 <h2 class="anchored" data-anchor-id="basic-structure">Basic Structure</h2>
-<p>The big picture of a neural network is to iteratively create a function that maps existing input x’s onto correct output y’s such that we can accurately predict y’s given new x’s.</p>
+<p>A neural network’s goal is to iteratively create a function that maps existing input x’s onto correct output y’s such that we can accurately <strong>predict</strong> y’s given new x’s.</p>
 <section id="neurons" class="level3">
 <h3 class="anchored" data-anchor-id="neurons">Neurons</h3>
 <div class="quarto-figure quarto-figure-center">
@@ -201,52 +201,51 @@ window.Quarto = {
 <figcaption>A basic neural network</figcaption>
 </figure>
 </div>
-<p>A neural network consists of a series of neurons (also called nodes) arranged in multiple interconnected layers that progress from an input layer, through “hidden layers,” and end up in an output layer (as shown in the above image). A given neuron works by:</p>
+<p>A neural network consists of a series of <strong>neurons</strong> (also called <strong>nodes</strong>) arranged in multiple interconnected layers, as shown in the above image. A given neuron works by:</p>
 <ol type="1">
 <li>taking all of the previous inputs (<code>x1</code> through <code>xn</code>),</li>
 <li>multiplying them by a weight (<code>w1</code> through <code>wn</code>),</li>
-<li>summing them (we’ll call this sum <code>z</code>),</li>
-<li>adding a “bias” to <code>z</code> (we’ll call the bias <code>b</code>),</li>
-<li>then passing it through a nonlinearity function (we’ll call this sigma, but more on that later) .</li>
+<li>summing them (<code>z</code>),</li>
+<li>adding a “bias” (<code>b</code>) to <code>z</code>,</li>
+<li>then passing it through a nonlinearity function (<code>𝜎</code>⁡) .</li>
 </ol>
 <p>With all of that together, the math for a given neuron’s activation <code>a</code> will look like this: (Note that <code>z</code> looks remarkably similar to a linear regression equation.) <span class="math display">\[
 z = w_1x_1 + w_2x_2+...+w_nx_n+b,\space\space a=\sigma(z)
 \]</span></p>
-<p>The reason we pass <code>z</code> into a nonlinearity function to get the neuron’s activation is because introducing nonlinearity allows the neuron a greater measure of flexibility. If not for our nonlinearity function, a given neuron would only be able to produce a straight line, which would miss out on a lot of higher level details. However, since nonlinear functions already have a bit of bend to them, transformations can the model fit the shape of the data incredibly well!</p>
+<p>The reason we pass <code>z</code> into a nonlinearity function is because nonlinear functions have some bend to them, which we can transform to make the model fit the shape of the data incredibly well. If not for our nonlinearity function, a given neuron would only be able to produce a straight line and would miss out on a lot of higher level details.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/nonlinearity.webp" class="img-fluid figure-img"></p>
 <figcaption>Example of nonlinearity in action</figcaption>
 </figure>
 </div>
-<p>Commonly used functions are this are ReLUs (which excludes negative values) and Sigmoids (which condenses inputs to be between 0 and 1)</p>
+<p>Commonly used functions are this are ReLUs (which has a bend from excluding negative values) and Sigmoids (which condenses inputs to be between 0 and 1)</p>
 </section>
 <section id="layers-in-neural-networks" class="level3">
 <h3 class="anchored" data-anchor-id="layers-in-neural-networks">Layers in Neural Networks</h3>
 <p>A neural network functions by having every neuron in a given layer interact with every neuron in the next layer. The first layer is called the “input layer,” and will have a node for every input you pass into the neural network (inputs can range from various medical variables such as BMI and heart rate to pixels from an image).</p>
-<p>From there, every input neuron will connect with every node in the next “hidden layer.” These consist of nodes that aim to discover high-dimensional connections about the data through each node’s unique combination of weights and biases. Each neuron in the hidden layer apply weights to the previous nodes’ activations, then sum them and add a bias. Later on, the node’s weights and bias will be tuned through training to more effectively recognize hidden connections within the data. From there, these nodes’ activations will be passed into additional hidden layers until the final layer is reached.</p>
+<p>From there, every input neuron will connect with every node in the next “hidden layer.” These nodes that aim to discover high-dimensional connections about the data though applying weights to the previous nodes’ activations, then summing them with an added a bias. Later on, the node’s weights and bias will be tuned through training to more effectively recognize hidden connections within the data. From there, these nodes’ activations will be passed into additional hidden layers until the final layer is reached.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/multiple_hidden_layers.png" class="img-fluid figure-img"></p>
 <figcaption>A neural network with multiple hidden layers</figcaption>
 </figure>
 </div>
-<p>Finally, after all of the neurons in the hidden layers activate, the neural network will return a value in the output layer. Sometimes this value will manifest as a probability between which of multiple outcomes will most likely be observed, or as a single number that predicts some metric (such as life expectancy). This will give us the outputs that we’ll test for accuracy in the training phase.</p>
+<p>Finally, after all of the neurons in the hidden layers activate, the neural network will return a value in the output layer. Sometimes this value will manifest as a probability between which of multiple outcomes will most likely be observed, or as a single number that predicts some metric (such as life expectancy). It’s important to note that these are the model’s best guesses, and not the objective truth. This will give us the outputs that we’ll test for accuracy in the training phase.</p>
 </section>
 </section>
 <section id="training-process" class="level2">
 <h2 class="anchored" data-anchor-id="training-process">Training Process</h2>
 <section id="analyzing-loss" class="level3">
 <h3 class="anchored" data-anchor-id="analyzing-loss">Analyzing Loss</h3>
-<p>Naturally, nobody will perfectly set up a neural network on the first try. However, you can optimize a neural network through a process called gradient descent, where you pay attention to the model’s MSE (or some other loss function), then systematically adjust the linear combination of each node’s weights in the direction that will reduce the MSE the most. After enough iterations, the loss should be significantly diminished! <span class="math display">\[
+<p>Naturally, nobody will perfectly set up a neural network on the first try. The connections between nodes are incredibly numerous and dense, so someone looking at a neural network’s connections could realistically only understand them as a black box. However, you can mechanically optimize a neural network through a process called gradient descent, where you pay attention to the model’s MSE (or some other loss function), then systematically adjust the linear combination of each node’s weights in the direction that will reduce the MSE the most. After enough iterations, the loss should be significantly diminished! <span class="math display">\[
 MSE = \text{mean}((w*x-y))^2
 \]</span></p>
 </section>
 <section id="training-validation-and-testing" class="level3">
 <h3 class="anchored" data-anchor-id="training-validation-and-testing">Training, Validation, and Testing</h3>
-<p>But how would one find the loss the equation for MSE requires the y to be known? Well, a neural network only works after it’s trained, so it requires a bunch of real data that has outputs mapped to inputs and models what the network will be testing. To train the network properly, the data should be split into a training set, a validation set, and a test set.</p>
-<p>The training set will help the network form its weights, the validation set will act as out-of-sample checkpoints that make sure the network is being trained properly, and the test set will be set aside until the very end of the training period to see how the model would perform on brand new data.</p>
-<p>This method of training is vital to make sure that the model is capable of acting outside the current data it has been trained on. If the model only picks up on the high level connections within the data, it can become overfit and will not be as accurate with new data. (Overfitting can also occur when there are too many hidden layers that get trained on small amounts of data.)</p>
+<p>We train a neural network by splitting our existing training data into training, validation, and testing sets. - The training set helps initialize node weights - The validation set gives out of sample checkpoints - The testing set is used at the end of training to test the network on ‘brand new data’</p>
+<p>This method of training is vital to make sure that the model is not overfit on the training data and will be capable of working with real data.</p>
 </section>
 </section>
 <section id="example-with-mnist-data" class="level2">
@@ -267,14 +266,13 @@ MSE = \text{mean}((w*x-y))^2
 <figcaption>Example MNIST input with pixel activations</figcaption>
 </figure>
 </div>
-<p>From there, those inputs will be passed into the first hidden layer (whose number of neurons will depend on how the neural network is set up, since there are lots of different advantages to different structures). Then, each node from the first hidden layer will act as the input for the next hidden layer, which will continue until the output layer is reached. The output layer node with the highest activation will be what the network classifies the number as.</p>
-<p>From there, the neural network will figure out the MSE for all the output neurons compared to the real classifying label (which will be 0 for all outputs except the correct label), then do some gradient descent to adjust the weights, then will try another run-through with a different image from the training set.</p>
+<p>From there, those inputs will be passed into the first hidden layer (whose number of neurons will depend on how the neural network is set up). Then, each node from the first hidden layer will act as the input for the next hidden layer, which will continue until the output layer is reached. The output layer node with the highest activation will be what the network classifies the number as.</p>
+<p>From there, the neural network will figure out the total MSE between the output neurons and their classified labels (which will be 0 for all outputs except the correct label), then do some gradient descent to adjust the weights, then will see how those changes affect the MSE of a different input from the training set.</p>
 <p>Finally, after enough rounds of training and validation, the model will be run with the test set to see how accurate it is with brand new data.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Thus concludes my tutorial blog! I hope that it has given you a better idea of how neural networks function. Additionally, I hope that the parallels to AI is clear, between the fact that they are able to synthesize massive amounts of data to make predictions for future data, and how the way data is used to train a model can be massively impactful (such as when the Google AI got overfit on Reddit comments and gave terrible advice). If you are interested in learning more, I’d strongly reccomend looking into supplementary training processes, such as learning rates, weight decay, dropout, or early stopping!</p>
-<p>Brock Steenblik</p>
+<p>I hope this has given you a better idea of how neural networks function and that the parallels to deep learning are clear (predictive inference, data-based training process, etc.) If you are interested in learning more, I’d recommend looking into training enhancements (like learning rates or dropout) or the math behind gradient descent!</p>
 
 
 </section>
