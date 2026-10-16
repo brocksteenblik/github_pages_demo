@@ -42,7 +42,7 @@ Commonly used functions are this are ReLUs (which excludes negative values) and 
 ### Layers in Neural Networks
 
 A neural network functions by having every neuron in a given layer interact with every neuron in the next layer.
-The first layer is called the "input layer," and will have a node for every input you pass into the neural network (inputs can range from various medical variables such as BMI and heartrate to pixels from an image).
+The first layer is called the "input layer," and will have a node for every input you pass into the neural network (inputs can range from various medical variables such as BMI and heart rate to pixels from an image).
 
 From there, the neurons in the input layer will connect with every node in the next layer, called a "hidden layer." These consist of many nodes that exist to discover high-dimensional features about the data through each node's unique combination of weights and biases. Each neuron in the hidden layer will use every activation from the previous layer's neurons as inputs that get scaled by the current neuron's weights and bias. Later on, the node's weights and bias will be tuned through training to more effectively recognize hidden connections within the data. There can also be any number of hidden layers, and every neuron in a given hidden layer will connect to the next hidden layer.
 
@@ -84,11 +84,13 @@ If the model only picks up on the high level connections within the data, it can
 
 ## Example with MNIST Data
 The MNIST database is a massive database that consists of tens of thousands of handwritten numbers in a 28x28 pixel resolution that each come with classifying labels.
+
 ![Example images from MNIST](/images/MNIST_dataset_example.png)
+
 This dataset is a classic for explaining the process of how neural networks function.
 
 Since there are 784 pixels in a given 28x28 image, one would initialize the neural network with 784 neurons in the input layer. 
-Additionally, since there are 10 numbers that the number could be, the neural newtwork will have 10 output neurons that correspond to 0-9.
+Additionally, since there are 10 numbers that the number could be, the neural network will have 10 output neurons that correspond to 0-9.
 The person setting up the neural network would also divide the data into a training, validation, and testing set, then would begin the training process.
 
 Each input layer node will accept a number between 0.00 and 1.0 that represents the pixel's grayscale as that input neuron's activation.
@@ -100,7 +102,10 @@ From there, the neural network will figure out the MSE for all the output neuron
 
 Finally, after enough rounds of training and validation, the model will be run with the test set to see how accurate it is with brand new data.
 
-A conclusion and call to action that gives readers a concrete next step
+## Conclusion
+Thus concludes my tutorial blog! I hope that it has given you a better idea of how neural networks function.
+Additionally, I hope that the parallels to AI is clear, between the fact that they are able to synthesize massive amounts of data to make predictions for future data, and how the way data is used to train a model can be massively impactful (such as when the Google AI got overfit on Reddit comments and gave terrible advice).
+If you are interested in learning more, I'd strongly reccomend looking into supplementary training processes, such as learning rates, weight decay, dropout, or early stopping!
 
--	Review my notes and point out any interesting things to follow up on, such as different kinds of neural networks
+Brock Steenblik
 

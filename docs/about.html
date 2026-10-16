@@ -160,6 +160,7 @@ window.Quarto = {
   <li><a href="#training-validation-and-testing" id="toc-training-validation-and-testing" class="nav-link" data-scroll-target="#training-validation-and-testing">Training, Validation, and Testing</a></li>
   </ul></li>
   <li><a href="#example-with-mnist-data" id="toc-example-with-mnist-data" class="nav-link" data-scroll-target="#example-with-mnist-data">Example with MNIST Data</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -222,7 +223,7 @@ z = w_1x_1 + w_2x_2+...+w_nx_n+b,\space\space a=\sigma(z)
 </section>
 <section id="layers-in-neural-networks" class="level3">
 <h3 class="anchored" data-anchor-id="layers-in-neural-networks">Layers in Neural Networks</h3>
-<p>A neural network functions by having every neuron in a given layer interact with every neuron in the next layer. The first layer is called the “input layer,” and will have a node for every input you pass into the neural network (inputs can range from various medical variables such as BMI and heartrate to pixels from an image).</p>
+<p>A neural network functions by having every neuron in a given layer interact with every neuron in the next layer. The first layer is called the “input layer,” and will have a node for every input you pass into the neural network (inputs can range from various medical variables such as BMI and heart rate to pixels from an image).</p>
 <p>From there, the neurons in the input layer will connect with every node in the next layer, called a “hidden layer.” These consist of many nodes that exist to discover high-dimensional features about the data through each node’s unique combination of weights and biases. Each neuron in the hidden layer will use every activation from the previous layer’s neurons as inputs that get scaled by the current neuron’s weights and bias. Later on, the node’s weights and bias will be tuned through training to more effectively recognize hidden connections within the data. There can also be any number of hidden layers, and every neuron in a given hidden layer will connect to the next hidden layer.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -256,15 +257,23 @@ MSE = \text{mean}((w*x-y))^2
 </section>
 <section id="example-with-mnist-data" class="level2">
 <h2 class="anchored" data-anchor-id="example-with-mnist-data">Example with MNIST Data</h2>
-<p>The MNIST database is a massive database that consists of tens of thousands of handwritten numbers in a 28x28 pixel resolution that each come with classifying labels. <img src="./images/MNIST_dataset_example.png" class="img-fluid" alt="Example images from MNIST"> This dataset is a classic for explaining the process of how neural networks function.</p>
-<p>Since there are 784 pixels in a given 28x28 image, one would initialize the neural network with 784 neurons in the input layer. Additionally, since there are 10 numbers that the number could be, the neural newtwork will have 10 output neurons that correspond to 0-9. The person setting up the neural network would also divide the data into a training, validation, and testing set, then would begin the training process.</p>
+<p>The MNIST database is a massive database that consists of tens of thousands of handwritten numbers in a 28x28 pixel resolution that each come with classifying labels.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/MNIST_dataset_example.png" class="img-fluid figure-img"></p>
+<figcaption>Example images from MNIST</figcaption>
+</figure>
+</div>
+<p>This dataset is a classic for explaining the process of how neural networks function.</p>
+<p>Since there are 784 pixels in a given 28x28 image, one would initialize the neural network with 784 neurons in the input layer. Additionally, since there are 10 numbers that the number could be, the neural network will have 10 output neurons that correspond to 0-9. The person setting up the neural network would also divide the data into a training, validation, and testing set, then would begin the training process.</p>
 <p>Each input layer node will accept a number between 0.00 and 1.0 that represents the pixel’s grayscale as that input neuron’s activation. From there, those inputs will be passed into the first hidden layer (whose number of neurons will depend on how the neural network is set up, since there are lots of different advantages to different structures). Then, each node from the first hidden layer will act as the input for the next hidden layer, which will continue until the output layer is reached. The output layer node with the highest activation will be what the network classifies the number as.</p>
 <p>From there, the neural network will figure out the MSE for all the output neurons compared to the real classifying label (which will be 0 for all outputs except the correct label), then do some gradient descent to adjust the weights, then will try another run-through with a different image from the training set.</p>
 <p>Finally, after enough rounds of training and validation, the model will be run with the test set to see how accurate it is with brand new data.</p>
-<p>A conclusion and call to action that gives readers a concrete next step</p>
-<ul>
-<li>Review my notes and point out any interesting things to follow up on, such as different kinds of neural networks</li>
-</ul>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Thus concludes my tutorial blog! I hope that it has given you a better idea of how neural networks function. Additionally, I hope that the parallels to AI is clear, between the fact that they are able to synthesize massive amounts of data to make predictions for future data, and how the way data is used to train a model can be massively impactful (such as when the Google AI got overfit on Reddit comments and gave terrible advice). If you are interested in learning more, I’d strongly reccomend looking into supplementary training processes, such as learning rates, weight decay, dropout, or early stopping!</p>
+<p>Brock Steenblik</p>
 
 
 </section>
