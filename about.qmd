@@ -73,7 +73,7 @@ We train a neural network by splitting our existing training data into training,
 This method of training is vital to make sure that the model is not overfit on the training data and will be capable of working with real data. 
 
 ## Example with MNIST Data
-The MNIST database is a massive database that consists of tens of thousands of handwritten numbers in a 28x28 pixel resolution that each come with classifying labels.
+The MNIST database ([Data:](https://www.kaggle.com/datasets/hojjatk/mnist-dataset))is a massive database that consists of tens of thousands of handwritten numbers in a 28x28 pixel resolution that each come with classifying labels.
 
 ![Example images from MNIST](/images/MNIST_dataset_example.png)
 
