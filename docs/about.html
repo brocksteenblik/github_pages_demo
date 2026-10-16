@@ -157,6 +157,7 @@ window.Quarto = {
   <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process">Training Process</a>
   <ul class="collapse">
   <li><a href="#analyzing-loss" id="toc-analyzing-loss" class="nav-link" data-scroll-target="#analyzing-loss">Analyzing Loss</a></li>
+  <li><a href="#training-validation-and-testing" id="toc-training-validation-and-testing" class="nav-link" data-scroll-target="#training-validation-and-testing">Training, Validation, and Testing</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -244,10 +245,10 @@ MSE = \text{mean}((w*x-y))^2
 \text{Gradient} = \space&lt;\text{mean}(2(w_1x-y)x),\text{mean}(2(w_2x-y)x),...,\text{mean}(2(w_ix-y)x)&gt;
 \]</span></p>
 <p>Although this math looks complicated, it’s not as scary as it looks. The gradient always points in the immediate direction of greatest increase (which would increase the loss), so we use that to move in the opposite direction which will give the greatest immediate decrease in loss. After doing this enough times for each neuron, we’ll eventually get to a stable enough point where the neural network gives an output with the lowest possible loss!</p>
-<ul>
-<li>Loss functions/Gradient descent</li>
-<li>Test/train validation</li>
-</ul>
+</section>
+<section id="training-validation-and-testing" class="level3">
+<h3 class="anchored" data-anchor-id="training-validation-and-testing">Training, Validation, and Testing</h3>
+<p>But how would one find the loss the equation for MSE requires the y to be known? Well, a neural network only works after it’s trained, so it requires a bunch of real data that has outputs mapped to inputs and models what the network will be testing. To train the network properly, the data should be split into a training set, a validation set, and a test set. The training set will help the network form its weights, the validation set will act as out-of-sample checkpoints that make sure the network is being trained properly, and the test set will be set aside until the very end of the training period to see how the model would perform on brand new data. This method of training is vital to make sure that the model is capable of acting outside the current data it has been trained on. If the model only picks up on the high level connections within the data, it can become overfit and will not be as accurate with new data. (Overfitting can also occur when there are too many hidden layers that get trained on small amounts of data.)</p>
 <p>Examples that help readers understand or apply the idea</p>
 <ul>
 <li>MNIST data set example</li>
