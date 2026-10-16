@@ -58,22 +58,11 @@ This will give us the outputs that we'll test for accuracy in the training phase
 ## Training Process
 ### Analyzing Loss
 Naturally, nobody will perfectly set up a neural network on the first try. 
-However, there are mathematic ways to optimize a neural network by keeping track of the loss!
-The main way this is done is by keeping track of the Mean Squared Error (MSE) or other measures of loss in something called a Loss Function.
+However, you can optimize a neural network through a process called gradient descent, where you pay attention to the model's MSE (or some other loss function), then systematically adjust the linear combination of each node's weights in the direction that will reduce the MSE the most. 
+After enough iterations, the loss should be significantly diminished!
 $$
 MSE = \text{mean}((w*x-y))^2
 $$
-
-We then look for the change in loss with respect to a given weight for every weight, then throw them into a vector called the gradient.
-$$
-\frac{dL}{dw_i}=\text{mean}(2(w_ix-y)x)
-\newline
-\text{Gradient} = \space<\text{mean}(2(w_1x-y)x),\text{mean}(2(w_2x-y)x),...,\text{mean}(2(w_ix-y)x)>
-$$
-
-Although this math looks complicated, it's not as scary as it looks. 
-The gradient always points in the immediate direction of greatest increase (which would increase the loss), so we use that to move in the opposite direction which will give the greatest immediate decrease in loss.
-After doing this enough times for each neuron, we'll eventually get to a stable enough point where the neural network gives an output with the lowest possible loss!
 
 ### Training, Validation, and Testing
 But how would one find the loss the equation for MSE requires the y to be known?
@@ -99,6 +88,9 @@ Additionally, since there are 10 numbers that the number could be, the neural ne
 The person setting up the neural network would also divide the data into a training, validation, and testing set, then would begin the training process.
 
 Each input layer node will accept a number between 0.00 and 1.0 that represents the pixel's grayscale as that input neuron's activation.
+
+![Example MNIST input with pixel activations](/images/MNIST_Input.png)
+
 From there, those inputs will be passed into the first hidden layer (whose number of neurons will depend on how the neural network is set up, since there are lots of different advantages to different structures).
 Then, each node from the first hidden layer will act as the input for the next hidden layer, which will continue until the output layer is reached.
 The output layer node with the highest activation will be what the network classifies the number as.

@@ -201,18 +201,18 @@ window.Quarto = {
 <figcaption>A basic neural network</figcaption>
 </figure>
 </div>
-<p>A neural network consists of a series of neurons (also called nodes) arranged in multiple interconnected layers that lead from an input layer, through “hidden layers,” and end up in an output layer (as shown in the above image). A given neuron works by:</p>
+<p>A neural network consists of a series of neurons (also called nodes) arranged in multiple interconnected layers that progress from an input layer, through “hidden layers,” and end up in an output layer (as shown in the above image). A given neuron works by:</p>
 <ol type="1">
 <li>taking all of the previous inputs (<code>x1</code> through <code>xn</code>),</li>
 <li>multiplying them by a weight (<code>w1</code> through <code>wn</code>),</li>
 <li>summing them (we’ll call this sum <code>z</code>),</li>
-<li>adding a “bias” to that sum (we’ll call the bias <code>b</code>),</li>
+<li>adding a “bias” to <code>z</code> (we’ll call the bias <code>b</code>),</li>
 <li>then passing it through a nonlinearity function (we’ll call this sigma, but more on that later) .</li>
 </ol>
 <p>With all of that together, the math for a given neuron’s activation <code>a</code> will look like this: (Note that <code>z</code> looks remarkably similar to a linear regression equation.) <span class="math display">\[
 z = w_1x_1 + w_2x_2+...+w_nx_n+b,\space\space a=\sigma(z)
 \]</span></p>
-<p>The reason we pass <code>z</code> into a nonlinearity function to get the neuron’s activation is because introducing nonlinearity allows the neuron a greater measure of flexibility. If not for our nonlinearity function, a given neuron would only be able to produce a straight line, which would miss out on a lot of higher level details. However, since nonlinear functions already have a bit of bendiness to them, transformations can make them fit the shape of the data incredibly well!</p>
+<p>The reason we pass <code>z</code> into a nonlinearity function to get the neuron’s activation is because introducing nonlinearity allows the neuron a greater measure of flexibility. If not for our nonlinearity function, a given neuron would only be able to produce a straight line, which would miss out on a lot of higher level details. However, since nonlinear functions already have a bit of bend to them, transformations can the model fit the shape of the data incredibly well!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/nonlinearity.webp" class="img-fluid figure-img"></p>
@@ -224,29 +224,23 @@ z = w_1x_1 + w_2x_2+...+w_nx_n+b,\space\space a=\sigma(z)
 <section id="layers-in-neural-networks" class="level3">
 <h3 class="anchored" data-anchor-id="layers-in-neural-networks">Layers in Neural Networks</h3>
 <p>A neural network functions by having every neuron in a given layer interact with every neuron in the next layer. The first layer is called the “input layer,” and will have a node for every input you pass into the neural network (inputs can range from various medical variables such as BMI and heart rate to pixels from an image).</p>
-<p>From there, the neurons in the input layer will connect with every node in the next layer, called a “hidden layer.” These consist of many nodes that exist to discover high-dimensional features about the data through each node’s unique combination of weights and biases. Each neuron in the hidden layer will use every activation from the previous layer’s neurons as inputs that get scaled by the current neuron’s weights and bias. Later on, the node’s weights and bias will be tuned through training to more effectively recognize hidden connections within the data. There can also be any number of hidden layers, and every neuron in a given hidden layer will connect to the next hidden layer.</p>
+<p>From there, every input neuron will connect with every node in the next “hidden layer.” These consist of nodes that aim to discover high-dimensional connections about the data through each node’s unique combination of weights and biases. Each neuron in the hidden layer apply weights to the previous nodes’ activations, then sum them and add a bias. Later on, the node’s weights and bias will be tuned through training to more effectively recognize hidden connections within the data. From there, these nodes’ activations will be passed into additional hidden layers until the final layer is reached.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/multiple_hidden_layers.png" class="img-fluid figure-img"></p>
 <figcaption>A neural network with multiple hidden layers</figcaption>
 </figure>
 </div>
-<p>Finally, after all of the neurons in the hidden layers activate, the neural network will return some value by doing math in the output layer. Sometimes this value will manifest as a probability between which of multiple outcomes will most likely be observed, or as a single number that predicts some metric (such as life expectancy). This will give us the outputs that we’ll test for accuracy in the training phase.</p>
+<p>Finally, after all of the neurons in the hidden layers activate, the neural network will return a value in the output layer. Sometimes this value will manifest as a probability between which of multiple outcomes will most likely be observed, or as a single number that predicts some metric (such as life expectancy). This will give us the outputs that we’ll test for accuracy in the training phase.</p>
 </section>
 </section>
 <section id="training-process" class="level2">
 <h2 class="anchored" data-anchor-id="training-process">Training Process</h2>
 <section id="analyzing-loss" class="level3">
 <h3 class="anchored" data-anchor-id="analyzing-loss">Analyzing Loss</h3>
-<p>Naturally, nobody will perfectly set up a neural network on the first try. However, there are mathematic ways to optimize a neural network by keeping track of the loss! The main way this is done is by keeping track of the Mean Squared Error (MSE) or other measures of loss in something called a Loss Function. <span class="math display">\[
+<p>Naturally, nobody will perfectly set up a neural network on the first try. However, you can optimize a neural network through a process called gradient descent, where you pay attention to the model’s MSE (or some other loss function), then systematically adjust the linear combination of each node’s weights in the direction that will reduce the MSE the most. After enough iterations, the loss should be significantly diminished! <span class="math display">\[
 MSE = \text{mean}((w*x-y))^2
 \]</span></p>
-<p>We then look for the change in loss with respect to a given weight for every weight, then throw them into a vector called the gradient. <span class="math display">\[
-\frac{dL}{dw_i}=\text{mean}(2(w_ix-y)x)
-\newline
-\text{Gradient} = \space&lt;\text{mean}(2(w_1x-y)x),\text{mean}(2(w_2x-y)x),...,\text{mean}(2(w_ix-y)x)&gt;
-\]</span></p>
-<p>Although this math looks complicated, it’s not as scary as it looks. The gradient always points in the immediate direction of greatest increase (which would increase the loss), so we use that to move in the opposite direction which will give the greatest immediate decrease in loss. After doing this enough times for each neuron, we’ll eventually get to a stable enough point where the neural network gives an output with the lowest possible loss!</p>
 </section>
 <section id="training-validation-and-testing" class="level3">
 <h3 class="anchored" data-anchor-id="training-validation-and-testing">Training, Validation, and Testing</h3>
@@ -266,7 +260,14 @@ MSE = \text{mean}((w*x-y))^2
 </div>
 <p>This dataset is a classic for explaining the process of how neural networks function.</p>
 <p>Since there are 784 pixels in a given 28x28 image, one would initialize the neural network with 784 neurons in the input layer. Additionally, since there are 10 numbers that the number could be, the neural network will have 10 output neurons that correspond to 0-9. The person setting up the neural network would also divide the data into a training, validation, and testing set, then would begin the training process.</p>
-<p>Each input layer node will accept a number between 0.00 and 1.0 that represents the pixel’s grayscale as that input neuron’s activation. From there, those inputs will be passed into the first hidden layer (whose number of neurons will depend on how the neural network is set up, since there are lots of different advantages to different structures). Then, each node from the first hidden layer will act as the input for the next hidden layer, which will continue until the output layer is reached. The output layer node with the highest activation will be what the network classifies the number as.</p>
+<p>Each input layer node will accept a number between 0.00 and 1.0 that represents the pixel’s grayscale as that input neuron’s activation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/MNIST_Input.png" class="img-fluid figure-img"></p>
+<figcaption>Example MNIST input with pixel activations</figcaption>
+</figure>
+</div>
+<p>From there, those inputs will be passed into the first hidden layer (whose number of neurons will depend on how the neural network is set up, since there are lots of different advantages to different structures). Then, each node from the first hidden layer will act as the input for the next hidden layer, which will continue until the output layer is reached. The output layer node with the highest activation will be what the network classifies the number as.</p>
 <p>From there, the neural network will figure out the MSE for all the output neurons compared to the real classifying label (which will be 0 for all outputs except the correct label), then do some gradient descent to adjust the weights, then will try another run-through with a different image from the training set.</p>
 <p>Finally, after enough rounds of training and validation, the model will be run with the test set to see how accurate it is with brand new data.</p>
 </section>
