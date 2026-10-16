@@ -1,7 +1,6 @@
 ---
-title: "Project Demo"
+title: "Brock Steenblik"
 ---
 
-This is a Quarto website.
+This is my home page! To read my tutorial blog about neural networks, go to Neural Networks Tutorial Blog.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

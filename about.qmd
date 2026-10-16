@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "Neural Networks Tutorial Blog"
 ---
 
 About this site
