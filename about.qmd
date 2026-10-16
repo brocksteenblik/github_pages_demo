@@ -3,10 +3,16 @@ title: "A Beginner’s Guide to Understanding Neural Networks"
 ---
 
 ## Introduction
-An introduction explaining the problem, concept, or task and why it matters
+In our day and age, Artifial Intelligence (AI) is proving to be a more and more powerful tool. 
+Due to its power, some people can see the things it does and think that it is utterly inscrutable. 
+However, I want to push back against that idea by teaching you about neural networks! 
+Neural networks are the foundation of deep learning, which in turn means that an understanding of neural networks can teach us more about how AI works!
+In this blog, I aim to teach you the fundamentals of the basic structure of neural networks, explain how neural networks are trained, and give an example of neural networks in action.
 
-- 	Neural networks are the foundation of deep learning and AI
--	A better understanding of how they work can inform your understanding on how AI and similar processes work
+## Tutorial Body
+### Basic Structure
+
+![A basic neural network](images/Colored_neural_network.webp)
 
 A tutorial body that explains the main ideas or steps
 
