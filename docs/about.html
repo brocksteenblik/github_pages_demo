@@ -159,6 +159,7 @@ window.Quarto = {
   <li><a href="#analyzing-loss" id="toc-analyzing-loss" class="nav-link" data-scroll-target="#analyzing-loss">Analyzing Loss</a></li>
   <li><a href="#training-validation-and-testing" id="toc-training-validation-and-testing" class="nav-link" data-scroll-target="#training-validation-and-testing">Training, Validation, and Testing</a></li>
   </ul></li>
+  <li><a href="#example-with-mnist-data" id="toc-example-with-mnist-data" class="nav-link" data-scroll-target="#example-with-mnist-data">Example with MNIST Data</a></li>
   </ul>
 </nav>
     </div>
@@ -248,19 +249,24 @@ MSE = \text{mean}((w*x-y))^2
 </section>
 <section id="training-validation-and-testing" class="level3">
 <h3 class="anchored" data-anchor-id="training-validation-and-testing">Training, Validation, and Testing</h3>
-<p>But how would one find the loss the equation for MSE requires the y to be known? Well, a neural network only works after it’s trained, so it requires a bunch of real data that has outputs mapped to inputs and models what the network will be testing. To train the network properly, the data should be split into a training set, a validation set, and a test set. The training set will help the network form its weights, the validation set will act as out-of-sample checkpoints that make sure the network is being trained properly, and the test set will be set aside until the very end of the training period to see how the model would perform on brand new data. This method of training is vital to make sure that the model is capable of acting outside the current data it has been trained on. If the model only picks up on the high level connections within the data, it can become overfit and will not be as accurate with new data. (Overfitting can also occur when there are too many hidden layers that get trained on small amounts of data.)</p>
-<p>Examples that help readers understand or apply the idea</p>
-<ul>
-<li>MNIST data set example</li>
-<li>Apply each step of the above body to this data set</li>
-</ul>
+<p>But how would one find the loss the equation for MSE requires the y to be known? Well, a neural network only works after it’s trained, so it requires a bunch of real data that has outputs mapped to inputs and models what the network will be testing. To train the network properly, the data should be split into a training set, a validation set, and a test set.</p>
+<p>The training set will help the network form its weights, the validation set will act as out-of-sample checkpoints that make sure the network is being trained properly, and the test set will be set aside until the very end of the training period to see how the model would perform on brand new data.</p>
+<p>This method of training is vital to make sure that the model is capable of acting outside the current data it has been trained on. If the model only picks up on the high level connections within the data, it can become overfit and will not be as accurate with new data. (Overfitting can also occur when there are too many hidden layers that get trained on small amounts of data.)</p>
+</section>
+</section>
+<section id="example-with-mnist-data" class="level2">
+<h2 class="anchored" data-anchor-id="example-with-mnist-data">Example with MNIST Data</h2>
+<p>The MNIST database is a massive database that consists of tens of thousands of handwritten numbers in a 28x28 pixel resolution that each come with classifying labels. <img src="./images/MNIST_dataset_example.png" class="img-fluid" alt="Example images from MNIST"> This dataset is a classic for explaining the process of how neural networks function.</p>
+<p>Since there are 784 pixels in a given 28x28 image, one would initialize the neural network with 784 neurons in the input layer. Additionally, since there are 10 numbers that the number could be, the neural newtwork will have 10 output neurons that correspond to 0-9. The person setting up the neural network would also divide the data into a training, validation, and testing set, then would begin the training process.</p>
+<p>Each input layer node will accept a number between 0.00 and 1.0 that represents the pixel’s grayscale as that input neuron’s activation. From there, those inputs will be passed into the first hidden layer (whose number of neurons will depend on how the neural network is set up, since there are lots of different advantages to different structures). Then, each node from the first hidden layer will act as the input for the next hidden layer, which will continue until the output layer is reached. The output layer node with the highest activation will be what the network classifies the number as.</p>
+<p>From there, the neural network will figure out the MSE for all the output neurons compared to the real classifying label (which will be 0 for all outputs except the correct label), then do some gradient descent to adjust the weights, then will try another run-through with a different image from the training set.</p>
+<p>Finally, after enough rounds of training and validation, the model will be run with the test set to see how accurate it is with brand new data.</p>
 <p>A conclusion and call to action that gives readers a concrete next step</p>
 <ul>
 <li>Review my notes and point out any interesting things to follow up on, such as different kinds of neural networks</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
