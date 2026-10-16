@@ -2,14 +2,14 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Project Demo",
+    "title": "Brock Steenblik",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "This is my home page! To read my tutorial blog about neural networks, go to Neural Networks Tutorial Blog."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Neural Networks Tutorial Blog",
     "section": "",
     "text": "About this site"
   }
