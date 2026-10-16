@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Project Demo" # can alter this to change name
+  title: "Brock Steenblik" # can alter this to change name
   navbar:
     left:
       - href: index.qmd
