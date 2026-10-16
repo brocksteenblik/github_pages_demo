@@ -50,6 +50,26 @@ From there, the neurons in the input layer will connect with every node in the n
 
 Finally, after all of the neurons in the hidden layers activate, the neural network will return some value by doing math in the output layer. Sometimes this value will manifest as a probability between which of multiple outcomes will most likely be observed, or as a single number that predicts some metric (such as life expectancy). This will give us the outputs that we'll test for accuracy in the training phase. 
 
+## Training Process
+### Analyzing Loss
+Naturally, nobody will perfectly set up a neural network on the first try. 
+However, there are mathematic ways to optimize a neural network by keeping track of the loss!
+The main way this is done is by keeping track of the Mean Squared Error (MSE) or other measures of loss in something called a Loss Function.
+$$
+MSE = \text{mean}((w*x-y))^2
+$$
+
+We then look for the change in loss with respect to a given weight for every weight, then throw them into a vector called the gradient.
+$$
+\frac{dL}{dw_i}=\text{mean}(2(w_ix-y)x)
+\newline
+\text{Gradient} = \space<\text{mean}(2(w_1x-y)x),\text{mean}(2(w_2x-y)x),...,\text{mean}(2(w_ix-y)x)>
+$$
+
+Although this math looks complicated, it's not as scary as it looks. 
+The gradient always points in the immediate direction of greatest increase (which would increase the loss), so we use that to move in the opposite direction which will give the greatest immediate decrease in loss.
+After doing this enough times for each neuron, we'll eventually get to a stable enough point where the neural network gives an output with the lowest possible loss!
+
 -	Loss functions/Gradient descent
 -	Test/train validation
 

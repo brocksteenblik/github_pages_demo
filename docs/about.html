@@ -154,6 +154,10 @@ window.Quarto = {
   <li><a href="#neurons" id="toc-neurons" class="nav-link" data-scroll-target="#neurons">Neurons</a></li>
   <li><a href="#layers-in-neural-networks" id="toc-layers-in-neural-networks" class="nav-link" data-scroll-target="#layers-in-neural-networks">Layers in Neural Networks</a></li>
   </ul></li>
+  <li><a href="#training-process" id="toc-training-process" class="nav-link" data-scroll-target="#training-process">Training Process</a>
+  <ul class="collapse">
+  <li><a href="#analyzing-loss" id="toc-analyzing-loss" class="nav-link" data-scroll-target="#analyzing-loss">Analyzing Loss</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -225,6 +229,21 @@ z = w_1x_1 + w_2x_2+...+w_nx_n+b,\space\space a=\sigma(z)
 </figure>
 </div>
 <p>Finally, after all of the neurons in the hidden layers activate, the neural network will return some value by doing math in the output layer. Sometimes this value will manifest as a probability between which of multiple outcomes will most likely be observed, or as a single number that predicts some metric (such as life expectancy). This will give us the outputs that we’ll test for accuracy in the training phase.</p>
+</section>
+</section>
+<section id="training-process" class="level2">
+<h2 class="anchored" data-anchor-id="training-process">Training Process</h2>
+<section id="analyzing-loss" class="level3">
+<h3 class="anchored" data-anchor-id="analyzing-loss">Analyzing Loss</h3>
+<p>Naturally, nobody will perfectly set up a neural network on the first try. However, there are mathematic ways to optimize a neural network by keeping track of the loss! The main way this is done is by keeping track of the Mean Squared Error (MSE) or other measures of loss in something called a Loss Function. <span class="math display">\[
+MSE = \text{mean}((w*x-y))^2
+\]</span></p>
+<p>We then look for the change in loss with respect to a given weight for every weight, then throw them into a vector called the gradient. <span class="math display">\[
+\frac{dL}{dw_i}=\text{mean}(2(w_ix-y)x)
+\newline
+\text{Gradient} = \space&lt;\text{mean}(2(w_1x-y)x),\text{mean}(2(w_2x-y)x),...,\text{mean}(2(w_ix-y)x)&gt;
+\]</span></p>
+<p>Although this math looks complicated, it’s not as scary as it looks. The gradient always points in the immediate direction of greatest increase (which would increase the loss), so we use that to move in the opposite direction which will give the greatest immediate decrease in loss. After doing this enough times for each neuron, we’ll eventually get to a stable enough point where the neural network gives an output with the lowest possible loss!</p>
 <ul>
 <li>Loss functions/Gradient descent</li>
 <li>Test/train validation</li>
