@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -120,9 +149,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#tutorial-body" id="toc-tutorial-body" class="nav-link" data-scroll-target="#tutorial-body">Tutorial Body</a>
+  <li><a href="#basic-structure" id="toc-basic-structure" class="nav-link" data-scroll-target="#basic-structure">Basic Structure</a>
   <ul class="collapse">
-  <li><a href="#basic-structure" id="toc-basic-structure" class="nav-link" data-scroll-target="#basic-structure">Basic Structure</a></li>
+  <li><a href="#neurons" id="toc-neurons" class="nav-link" data-scroll-target="#neurons">Neurons</a></li>
+  <li><a href="#layers-in-neural-networks" id="toc-layers-in-neural-networks" class="nav-link" data-scroll-target="#layers-in-neural-networks">Layers in Neural Networks</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -151,21 +181,51 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In our day and age, Artifial Intelligence (AI) is proving to be a more and more powerful tool. Due to its power, some people can see the things it does and think that it is utterly inscrutable. However, I want to push back against that idea by teaching you about neural networks! Neural networks are the foundation of deep learning, which in turn means that an understanding of neural networks can teach us more about how AI works! In this blog, I aim to teach you the fundamentals of the basic structure of neural networks, explain how neural networks are trained, and give an example of neural networks in action.</p>
+<p>In our day and age, Artificial Intelligence (AI) is proving to be a more and more powerful tool. Due to its power, some people can see the things it does and think that it is utterly inscrutable. However, I want to push back against that idea by teaching you about neural networks! Neural networks are the foundation of deep learning, which in turn means that an understanding of neural networks can teach us more about how AI works! In this blog, I aim to teach you the fundamentals of the basic structure of neural networks, explain how neural networks are trained, and give an example of neural networks in action.</p>
 </section>
-<section id="tutorial-body" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-body">Tutorial Body</h2>
-<section id="basic-structure" class="level3">
-<h3 class="anchored" data-anchor-id="basic-structure">Basic Structure</h3>
+<section id="basic-structure" class="level2">
+<h2 class="anchored" data-anchor-id="basic-structure">Basic Structure</h2>
+<p>The big picture of a neural network is to gradually create a function that maps existing input x’s onto correct output y’s such that we can accurately predict y’s given new x’s.</p>
+<section id="neurons" class="level3">
+<h3 class="anchored" data-anchor-id="neurons">Neurons</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Colored_neural_network.webp" class="img-fluid figure-img"></p>
 <figcaption>A basic neural network</figcaption>
 </figure>
 </div>
-<p>A tutorial body that explains the main ideas or steps</p>
+<p>A neural network consists of a series of neurons (also called nodes) arranged in multiple interconnected layers that lead from an input layer, through “hidden layers,” and end up in an output layer (as shown in the above image). A given neuron works by:</p>
+<ol type="1">
+<li>taking all of the previous inputs (<code>x1</code> through <code>xn</code>),</li>
+<li>multiplying them by a weight (<code>w1</code> through <code>wn</code>),</li>
+<li>summing them (we’ll call this sum <code>z</code>),</li>
+<li>adding a “bias” to that sum (we’ll call the bias <code>b</code>),</li>
+<li>then passing it through a nonlinearity function (we’ll call this sigma, but more on that later) .</li>
+</ol>
+<p>With all of that together, the math for a given neuron’s activation <code>a</code> will look like this: (Note that <code>z</code> looks remarkably similar to a linear regression equation.) <span class="math display">\[
+z = w_1x_1 + w_2x_2+...+w_nx_n+b,\space\space a=\sigma(z)
+\]</span></p>
+<p>The reason we pass <code>z</code> into a nonlinearity function to get the neuron’s activation is because introducing nonlinearity allows the neuron a greater measure of flexibility. If not for our nonlinearity function, a given neuron would only be able to produce a straight line, which would miss out on a lot of higher level details. However, since nonlinear functions already have a bit of bendiness to them, transformations can make them fit the shape of the data incredibly well!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/nonlinearity.webp" class="img-fluid figure-img"></p>
+<figcaption>Example of nonlinearity in action</figcaption>
+</figure>
+</div>
+<p>Commonly used functions are this are ReLUs (which excludes negative values) and Sigmoids (which condenses inputs to be between 0 and 1)</p>
+</section>
+<section id="layers-in-neural-networks" class="level3">
+<h3 class="anchored" data-anchor-id="layers-in-neural-networks">Layers in Neural Networks</h3>
+<p>A neural network functions by having every neuron in a given layer interact with every neuron in the next layer. The first layer is called the “input layer,” and will have a node for every input you pass into the neural network (inputs can range from various medical variables such as BMI and heartrate to pixels from an image).</p>
+<p>From there, the neurons in the input layer will connect with every node in the next layer, called a “hidden layer.” These consist of many nodes that exist to discover high-dimensional features about the data through each node’s unique combination of weights and biases. Each neuron in the hidden layer will use every activation from the previous layer’s neurons as inputs that get scaled by the current neuron’s weights and bias. Later on, the node’s weights and bias will be tuned through training to more effectively recognize hidden connections within the data. There can also be any number of hidden layers, and every neuron in a given hidden layer will connect to the next hidden layer.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/multiple_hidden_layers.png" class="img-fluid figure-img"></p>
+<figcaption>A neural network with multiple hidden layers</figcaption>
+</figure>
+</div>
+<p>Finally, after all of the neurons in the hidden layers activate, the neural network will return some value by doing math in the output layer. Sometimes this value will manifest as a probability between which of multiple outcomes will most likely be observed, or as a single number that predicts some metric (such as life expectancy). This will give us the outputs that we’ll test for accuracy in the training phase.</p>
 <ul>
-<li>Basic structure of neural networks (neurons, input layers, hidden layers, output)</li>
 <li>Loss functions/Gradient descent</li>
 <li>Test/train validation</li>
 </ul>
