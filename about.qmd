@@ -1,5 +1,25 @@
 ---
-title: "Neural Networks Tutorial Blog"
+title: "A Beginner’s Guide to Understanding Neural Networks"
 ---
 
-Test text
+## Introduction
+An introduction explaining the problem, concept, or task and why it matters
+
+- 	Neural networks are the foundation of deep learning and AI
+-	A better understanding of how they work can inform your understanding on how AI and similar processes work
+
+A tutorial body that explains the main ideas or steps
+
+-	Basic structure of neural networks (neurons, input layers, hidden layers, output)
+-	Loss functions/Gradient descent
+-	Test/train validation
+
+Examples that help readers understand or apply the idea
+
+-	MNIST data set example
+-	Apply each step of the above body to this data set
+
+A conclusion and call to action that gives readers a concrete next step
+
+-	Review my notes and point out any interesting things to follow up on, such as different kinds of neural networks
+

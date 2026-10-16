@@ -2,5 +2,5 @@
 title: "Brock Steenblik"
 ---
 
-This is my home page! To read my tutorial blog about neural networks, go to Neural Networks Tutorial Blog.
+This is my home page! To read my tutorial blog about neural networks, go to the Tutorial Blog tab.
 
