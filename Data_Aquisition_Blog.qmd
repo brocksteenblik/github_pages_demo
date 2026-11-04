@@ -1,0 +1,6 @@
+---
+title: "Data Acquisition Blog"
+format: html
+---
+## Hello.
+
