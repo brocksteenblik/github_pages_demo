@@ -9,7 +9,8 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - Data_Aquisition_Blog.qmd
+      - href: Data_Aquisition_Blog.qmd
+        text: Data Acquisition Blog
 
 format:
   html:
