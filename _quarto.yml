@@ -8,7 +8,8 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: A Beginner's Guide to Understanding Neural Networks
       - href: Data_Aquisition_Blog.qmd
         text: Data Acquisition Blog
 
