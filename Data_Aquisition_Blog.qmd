@@ -6,27 +6,27 @@ format: html
 I am a massive fan of fighting games, and I often find myself looking at online wikis that cover different characters' strategies as well as their *"frame data"* (more on that later). 
 I play multiple different fighting games (such as Street Fighter and Smash Bros.), but the series that I want to focus on for the sake of this project is called **"Guilty Gear"**. 
 This series has gathered quite a large fan base since the release of its latest game, **Guilty Gear -Strive-**, and has seen thousands of fans register to play in several different official tournaments.
+
+![Guilty Gear Strive](/images/Guilty_Gear_Strive.jpg)
+
 However, some long-time Guilty Gear fans claim that the old games are better because Guilty Gear -Strive- has simplified the many of mechanics present in older Guilty Gear games.
 Although game balance is an incredibly difficult subject to understand, I thought I could try to approach this discussion by acquiring some data regarding the differences in *"frame data"* between the two games to see if any significant trends emerge between the two games!
+
+![Guilty Gear Strive vs. Guilty Gear Xrd Revelator 2](/images/StriveVXrd.png)
 
 ## Motivating question
 ### Context
 For the sake of this blog, there are a few important things to understand about the attacks in this series. 
 
-1. Characters in Guilty Gear have 5 attack buttons: Punch (P), Kick (K), Slash (S), Heavy Slash (H), and Dust (D). Characters have different variations of these if they are standing, crouching, close to the opponent, or holding the button down (only in the case of Dusts in Strive)
+1. ["Frame Data"](https://fighterfundamentals.home.blog/wp-content/uploads/2019/03/ryupunch.gif) refers to how many 1/60 second "frames" it takes for a certain attack to start, stop, etc. (this comes from the games running at 60 frames per second). For instance, if an attack has "20 frame startup", that means a third of a second will pass between the attack button being pressed and the attack actually being able to hit the enemy.
 
-2. Players of these games refer to the attacks that characters have in "numpad notation," which can be unintuitive. However, this blog will mostly only cover standing attacks (denoted as 5P, 5K, etc.), crouching attacks (denoted by 2P, 2K, etc.), and close/far attacks (denoted by c.S and f.S).
+2. There are three significant attack properties discussed in the blog, which are startup (how fast an attack becomes active), recovery (effectively how long an attack's cooldown is), and advantage on block (how much sooner you can act before an opponent after hitting their block with a given attack). These are all in terms of frames, though block advantage is positive or negative depending on whether you can act before your opponent exits blockstun or afterwards.
 
-3. "Frame Data" refers to how many 1/60 second "frames" it takes for a certain attack to start, stop, etc. (this comes from the games running at 60 frames per second). For instance, if an attack has "20 frame startup", that means a third of a second will pass between the attack button being pressed and the attack actually being able to hit the enemy.
+3. Some attacks hit low, which means that the opponent must be crouching and blocking to not get hit by the attack, and some attacks hit high, which means the the opponent must be standing and blocking to not get hit. If an attack doesn't hit high or low, the opponent can crouch or stand while blocking.
 
-4. There are three significant attack properties discussed in the blog, which are startup (how fast an attack becomes active), recovery (effectively how long an attack's cooldown is), and advantage on block (how much sooner you can act before an opponent after hitting their block with a given attack). These are all in terms of frames, though block advantage is positive or negative depending on whether you can act before your opponent exits blockstun or afterwards.
-
-5. Some attacks hit low, which means that the opponent must be crouching and blocking to not get hit by the attack, and some attacks hit high, which means the the opponent must be standing and blocking to not get hit. If an attack doesn't hit high or low, the opponent can crouch or stand while blocking.
-
--- Low attacks tend to be faster than high attacks, and generally the opponent will be crouch blocking if they are on defense.
 
 ### Questions
-To gauge if Strive is more simplified than past Guilty Gear games, my goal is to look into how much attacks favor the attacker in terms of frame data between the two games.
+To gauge if Strive is more simplified than past Guilty Gear games, my goal is to look into how much attacks favor the attacker in terms of frame data between Guilty Gear Strive (Strive) and Guilty Gear Xrd Revelator 2 (Xrd).
 Key indicators that I will look out for include:
 
 - How fast attacks generally are to start up (faster attacks can make it easier to start your offense)
@@ -34,15 +34,37 @@ Key indicators that I will look out for include:
 - How much recovery moves tend to have (more recovery means that enemies can punish missed attacks more easily)
 - How advantageous moves tend to be on block (having positive frame advantage on the opponent's block means that it is harder for them to challenge your offense)
 
+## Data Scraping Ethics Check
+The main webiste I used for my scraping was the [Dustloop Wiki](https://www.dustloop.com/), which is a fanmade website that contains data and guides for various fighting games. 
+Before actually scraping anything, I made sure to check that its [robots.txt](https://www.dustloop.com/robots.txt) didn't forbid me from accessing anything, which it didn't! 
+I also made sure that there wasn't anything in the Terms of Use that forbade me from accessing the site's info.
 
+## Data Scraping Process
+In order to get the data of characters' attacks, I used the requests package as well as BeautifulSoup to make API requests and analyze the html. 
+From there, I scraped the contents of the tables that contained the data of characters' moves (denoted by `class = "frameDataGridRow colCount-7"` or `class = "frameDataGridRow colCount-8"`). 
+I had to make some manual changes to the code that gathered those tables since a few characters' data was stored differently (for instance, having `colCount-8` tables where `colCount-7` tables typically were), but my tables for the two different games were ready after that. 
 
-Information about how you determined that it was ethical / allowable to get the data that you gathered and/or how you implemented good scraping practice
+Lastly, I rearranged the structure of the tables such that the moves made up the rows rather than the characters, refit the rest of the data to reflect that, then finally cleaned up the data using RegEx to standardize the data entries.
 
-Summary of the steps needed to get your data with an emphasis on teaching other how they could get started with a similar project
-- Overly detailed accounts are not required (and discouraged)
-- Just provide enough info to help someone else potentially get started with a similar project
-EDA highlights: summary statistics, summary graphics, and/or information about final dataset (e.g., total sample size, counts of categorical variables, numerical summaries of numeric variables)
-- What are the most interesting findings of your EDA?
-Links to find further information and /or resources
-A link to your code in a separate GitHub repo
+## EDA
+The final dataset revealed many interesting insights about the differences in frame data between the games, such as:
+
+- Attacks in Xrd come out about 1.6 frames faster on average than in Strive (9.9 vs. 11.5). Additionally, the fastest moves in Xrd takes 3 frames to come out, while the fastest moves in Strive take about 5 frames to come out.
+- High Attacks in Xrd come out nearly 2 frames slower on average than Highs in Strive (25.96 vs. 24.0), though they have significantly less recovery (15.42 vs. 25.18) and are less disadvantageous on block (-5.81 vs. -12.50).
+- Attacks in Xrd have about 3.3 fewer frames of recovery on average than those in Strive (14.21 vs. 17.55).
+- Attacks in Xrd are generally 2.55 frames more advantageous on block on average than attacks in Strive (-4.69 vs. -7.245). 
+- 19% of the moves in Xrd are advantageous on block while about 8.37% of moves in Strive are advantageous on block. Interestingly, 83.78% of advantageous on block attacks in Strive correspond to the same attack type (a fighter's Close Slash). This could be indicative of the developers trying to push a more standardized playstyle in Strive.
+
+It seems that Xrd's frame data is generally stronger than Strive's frame data, even if the differences are somewhat slight. 
+However, small differences in frame data can still have significant ramifications. 
+Being two frames more advantageous on your opponent's block can take you from being -1 (and likely losing to their fastest attacks) to being +1 (and conversely beating your opponent's fastest attacks). 
+Although the differences aren't huge, I feel confident concluding that Strive is at least somewhat more streamlined than Xrd.
+
+## Call to action
+If you would like to learn more, you can look at some of the other fighting game pages on Dustloop, such as for [Dragon Ball FighterZ](dustloop.com/w/Dragon_Ball_FighterZ), [Marvel Tokon: Fighting Souls](https://www.dustloop.com/w/MTFS), or an [even older Guilty Gear game](https://www.dustloop.com/w/GGACR) (for which the code from Xrd would likely work)! 
+
+I hope you enjoyed learning about the intricacies of fighting game frame data!
+
+## Resources
+Code used for data acquisition: [https://github.com/brocksteenblik/STAT-386-Data-Acquisition-Code](https://github.com/brocksteenblik/STAT-386-Data-Acquisition-Code)
 
