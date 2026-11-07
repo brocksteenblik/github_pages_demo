@@ -2,5 +2,22 @@
 title: "Data Acquisition Blog"
 format: html
 ---
-## Hello.
+## Introduction 
+I am a massive fan of fighting games, and I often find myself looking at online wikis that cover different characters' strategies as well as their *"frame data"* (more on that later). 
+I play multiple different fighting games (such as Street Fighter and Smash Bros.), but the series that I want to focus on for the sake of this project is called **"Guilty Gear"**. 
+This series has gathered quite a large fan base since the release of its latest game, **Guilty Gear -Strive-**, and has seen thousands of fans register to play in several differentt official tournaments.
+However, some long-time Guilty Gear fans claim that the old games are better because Guilty Gear -Strive- has simplified the many of mechanics present in older Guilty Gear games.
+Although game balance is an incredibly difficult subject to understand, I thought I could try to approach this discussion by acquiring some data regarding the differences in *"frame data"* between the two games to see if any significant trends emerge between the two games!
+
+## Motivating question
+
+Information about how you determined that it was ethical / allowable to get the data that you gathered and/or how you implemented good scraping practice
+
+Summary of the steps needed to get your data with an emphasis on teaching other how they could get started with a similar project
+- Overly detailed accounts are not required (and discouraged)
+- Just provide enough info to help someone else potentially get started with a similar project
+EDA highlights: summary statistics, summary graphics, and/or information about final dataset (e.g., total sample size, counts of categorical variables, numerical summaries of numeric variables)
+- What are the most interesting findings of your EDA?
+Links to find further information and /or resources
+A link to your code in a separate GitHub repo
 
