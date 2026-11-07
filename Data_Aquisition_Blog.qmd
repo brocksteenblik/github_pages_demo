@@ -10,6 +10,22 @@ However, some long-time Guilty Gear fans claim that the old games are better bec
 Although game balance is an incredibly difficult subject to understand, I thought I could try to approach this discussion by acquiring some data regarding the differences in *"frame data"* between the two games to see if any significant trends emerge between the two games!
 
 ## Motivating question
+### Context
+For the sake of this blog, there are a few important things to understand about the attacks in this series. 
+1. Characters in Guilty Gear have 5 attack buttons: Punch (P), Kick (K), Slash (S), Heavy Slash (H), and Dust (D). Characters have different variations of these if they are standing, crouching, close to the opponent, or holding the button down (only in the case of Dusts in Strive)
+2. Players of these games refer to the attacks that characters have in "numpad notation," which can be unintuitive. However, this blog will mostly only cover standing attacks (denoted as 5P, 5K, etc.), crouching attacks (denoted by 2P, 2K, etc.), and close/far attacks (denoted by c.S and f.S).
+3. "Frame Data" refers to how many 1/60 second "frames" it takes for a certain attack to start, stop, etc. (this comes from the games running at 60 frames per second). For instance, if an attack has "20 frame startup", that means a third of a second will pass between the attack button being pressed and the attack actually being able to hit the enemy.
+4. There are three significant attack properties discussed in the blog, which are startup (how fast an attack becomes active), recovery (effectively how long an attack's cooldown is), and advantage on block (how much sooner you can act before an opponent after hitting their block with a given attack). These are all in terms of frames, though block advantage is positive or negative depending on whether you can act before your opponent exits blockstun or afterwards.
+5. Some attacks hit low, which means that the opponent must be crouching and blocking to not get hit by the attack, and some attacks hit high, which means the the opponent must be standing and blocking to not get hit. If an attack doesn't hit high or low, the opponent can crouch or stand while blocking.
+-- Low attacks tend to be faster than high attacks, and generally the opponent will be crouch blocking if they are on defense.
+
+### Questions
+To gauge if Strive is more simplified than past Guilty Gear games, my goal is to look into how much attacks favor the attacker in terms of frame data between the two games.
+Key indicators that I will look out for include:
+- How fast attacks generally are to start up (faster attacks can make it easier to start your offense)
+- How fast High attacks tend to be (Faster highs are harder to react to and make better mixups)
+- How much recovery moves tend to have (more recovery means that enemies can punish missed attacks more easily)
+- How advantageous moves tend to be on block (having positive frame advantage on the opponent's block means that it is harder for them to challenge your offense)
 
 Information about how you determined that it was ethical / allowable to get the data that you gathered and/or how you implemented good scraping practice
 
