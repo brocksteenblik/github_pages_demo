@@ -32,7 +32,7 @@
     "href": "Data_Aquisition_Blog.html#data-scraping-ethics-check",
     "title": "Data Acquisition Blog",
     "section": "Data Scraping Ethics Check",
-    "text": "Data Scraping Ethics Check\nThe main webiste I used for my scraping was the Dustloop Wiki, which is a fanmade website that contains data and guides for various fighting games. Before actually scraping anything, I made sure to check that its robots.txt didn’t forbid me from accessing anything, which it didn’t! I also made sure that there wasn’t anything in the Terms of Use that forbade me from accessing the site’s info."
+    "text": "Data Scraping Ethics Check\nThe main webiste I used for my scraping was the Dustloop Wiki, which is a fanmade website that contains data and guides for various fighting games (Strive Page, Xrd Page). Before actually scraping anything, I made sure to check that its robots.txt didn’t forbid me from accessing anything, which it didn’t! I also made sure that there wasn’t anything in the Terms of Use that forbade me from accessing the site’s info."
   },
   {
     "objectID": "Data_Aquisition_Blog.html#data-scraping-process",

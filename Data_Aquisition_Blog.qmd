@@ -34,7 +34,7 @@ Key indicators that I will look out for include:
 - How advantageous moves tend to be on block (having positive frame advantage on the opponent's block means that it is harder for them to challenge your offense)
 
 ## Data Scraping Ethics Check
-The main webiste I used for my scraping was the [Dustloop Wiki](https://www.dustloop.com/), which is a fanmade website that contains data and guides for various fighting games. 
+The main webiste I used for my scraping was the [Dustloop Wiki](https://www.dustloop.com/), which is a fanmade website that contains data and guides for various fighting games ([Strive Page, ](https://www.dustloop.com/w/GGST) [Xrd Page](https://www.dustloop.com/w/GGXRD-R2)). 
 Before actually scraping anything, I made sure to check that its [robots.txt](https://www.dustloop.com/robots.txt) didn't forbid me from accessing anything, which it didn't! 
 I also made sure that there wasn't anything in the Terms of Use that forbade me from accessing the site's info.
 
