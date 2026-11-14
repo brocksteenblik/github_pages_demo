@@ -65,7 +65,7 @@ The final dataset revealed many interesting insights about the differences in fr
 It seems that Xrd's frame data is slightly generally stronger than Strive's frame data.
 However, small differences in frame data can still have significant ramifications!
 Being two frames more advantageous on your opponent's block can take you from being -1 (and likely losing to their fastest attacks) to being +1 (and conversely beating your opponent's fastest attacks). 
-Although the differences aren't huge, I feel confident concluding that Strive is at least somewhat more streamlined than Xrd.
+Although the differences aren't huge, I feel confident concluding that Strive is at least somewhat more simplified than Xrd.
 
 ## Call to action
 If you would like to learn more, you can look at some of the other fighting game pages on Dustloop, such as for [Dragon Ball FighterZ](dustloop.com/w/Dragon_Ball_FighterZ), [Marvel Tokon: Fighting Souls](https://www.dustloop.com/w/MTFS), or an [even older Guilty Gear game](https://www.dustloop.com/w/GGACR) (for which the code from Xrd would likely work)! 
